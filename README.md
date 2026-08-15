@@ -1,17 +1,27 @@
-# dsh-glass-theme
+# dsh-glassmorphism
 
-DeepSeek Harness（DSH）WebUI 的 **iOS 26 液态玻璃（Liquid Glass）主题**，并包含**常驻手机端 UI 适配**。
+DeepSeek Harness（DSH）WebUI 的 **玻璃质感（Glassmorphism）主题**，并包含**常驻手机端 UI 适配**。
 
 - 手机端适配与玻璃主题解耦：`localStorage['dsh-glass-theme:enabled'] = '0'` 只关闭玻璃视觉，单栏聊天、抽屉侧边栏、详情 Sheet、安全区、44px 触控目标仍然生效。
 - 液态玻璃渲染全部重新编写，零运行时第三方依赖。
 - 输入框是玻璃重点：边缘内高光、小面积 backdrop 磨砂、SVG `feTurbulence + feDisplacementMap` 位移折射；镜面高光与色散边纹用 CSS 渐变/box-shadow 近似，并有 rAF 节流的指针视差阴影；移动端自动降级（背景位移与气泡磨砂关闭，输入框折射保留）。
 - 背景插画（`assets/background.jpg`）在构建时内联为 data URL，放固定层做一次性 `blur + saturate + brightness` 合成，滚动/交互零成本。
 
+## 截图预览
+
+| 主界面 | 主题设置 |
+| --- | --- |
+| ![主界面](docs/screenshots/main.jpg) | ![设置卡片](docs/screenshots/settings.jpg) |
+
+| 插件列表 | 输入框近景 |
+| --- | --- |
+| ![插件列表](docs/screenshots/plugins.jpg) | ![输入框](docs/screenshots/input.jpg) |
+
 ## 一、安装（web profile）
 
 ```bash
-git clone https://github.com/czw63/dsh-glass-theme.git
-cd dsh-glass-theme
+git clone https://github.com/czw63/dsh-glassmorphism.git
+cd dsh-glassmorphism
 node scripts/build.mjs   # 把 assets/background.jpg 内联进 lib/client.js
 
 dsh plugin --profile web add "file:$(pwd)"

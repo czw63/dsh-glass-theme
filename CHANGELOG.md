@@ -41,4 +41,4 @@
 - `backdrop-filter` 仅用于输入卡、弹层 / 菜单、气泡（桌面端）、试玩卡等中小面积；聊天主区 / 侧边栏 / 详情栏不做大面积实时 backdrop-filter。
 - 指针视差与动态视口同步均用 rAF 节流；`prefers-reduced-motion: reduce` 时关闭全部动效与滤镜交互。
 
-[2.0.0]: https://github.com/czw63/dsh-glass-theme/releases/tag/v2.0.0
+[2.0.0]: https://github.com/czw63/dsh-glassmorphism/releases/tag/v2.0.0
