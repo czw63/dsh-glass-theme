@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+
+# 发图通道运行时目录（图片由部署者自行放入，不入库）
+serve/*
+!serve/.gitkeep
+
+# 日志
+*.log
+
+# 构建产物（如需发布源码可忽略 client.js；本仓库保留预构建产物便于直接安装）
+# lib/client.js
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
