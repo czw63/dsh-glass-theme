@@ -5,7 +5,7 @@
 格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [语义化版本 SemVer](https://semver.org/lang/zh-CN/)。
 
-## [3.0.0]
+## [2.1.0]
 
 > 对比 v2.0，本版本在 v2 整体框架（手机端适配、设置 UI、控制逻辑、背景图内联）之上，
 > **把玻璃渲染方式替换为 [`xingyingyuzhui/dsh-liquid-glass`](https://github.com/xingyingyuzhui/dsh-liquid-glass) 的实现**。

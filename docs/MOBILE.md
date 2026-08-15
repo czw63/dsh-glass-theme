@@ -86,12 +86,12 @@
 
 | 项目 | 行为 |
 | --- | --- |
-| 背景插画 | 改用固定 `blur(12px) saturate(.84) brightness(1.02)`（深色 `.86 / .58`），**不再叠加背景 SVG 位移**（背景折射规则被 `min-width: 769px` 门控）。 |
+| 壁纸层 | 保持清晰（`filter: none`），不按端降级；透明度由 `--glass-wallpaper-opacity` 控制。 |
 | 消息气泡 | 关闭 `backdrop-filter`（`backdrop-filter: none`；气泡磨砂本身也门控在 `min-width: 769px`）。 |
-| 输入卡 | 圆角从 `--glass-radius-xl` 降级为 `--glass-radius-lg`。 |
+| 输入卡 | 圆角沿用 `--glass-radius-xl`；SDF 位移折射（`dsh-glass-lens-input`）保留。 |
 | 指针视差 / 光斑 | 仅精细指针启用；触屏 / 粗指针下 `.dsh-glass-sheen` 隐藏，且不挂 `pointermove` 监听。 |
 
-> 精确说明：输入卡的 backdrop 磨砂与 SVG 位移折射（`dsh-glass-input-backdrop`）**未按宽度关闭**，仍由「输入框液态玻璃」与「输入框背景折射」两个开关控制。真正按端降级的是背景位移、气泡磨砂与指针跟随三项。
+> 精确说明：输入卡的 SDF 位移折射（`dsh-glass-lens-input`）**未按宽度关闭**，仍由「输入框液态折射」与「输入框背景折射」两个开关控制。真正按端降级的是气泡磨砂与指针跟随两项。
 
 ### 3.2 能力与偏好降级
 

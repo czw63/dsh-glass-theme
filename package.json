@@ -1,6 +1,6 @@
 {
   "name": "@local/dsh-glass-theme",
-  "version": "3.0.0",
+  "version": "2.1.0",
   "description": "iOS 26 液态玻璃（Liquid Glass）Web 主题：手机端适配常驻，玻璃视觉可独立开关。玻璃渲染方式参考 dsh-liquid-glass（壁纸层 + 玻璃岛局部 blur + SDF 位移折射）。",
   "type": "module",
   "main": "./lib/index.js",
