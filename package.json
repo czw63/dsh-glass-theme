@@ -1,0 +1,37 @@
+{
+  "name": "@local/dsh-glass-theme",
+  "version": "2.0.0",
+  "description": "iOS 26 液态玻璃（Liquid Glass）Web 主题：手机端适配常驻，玻璃视觉可独立开关。渲染实现全新编写，零运行时依赖。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-settings-plugins",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "files": [
+    "lib",
+    "assets",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT"
+}
