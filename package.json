@@ -1,7 +1,7 @@
 {
   "name": "@local/dsh-glass-theme",
-  "version": "2.0.0",
-  "description": "iOS 26 液态玻璃（Liquid Glass）Web 主题：手机端适配常驻，玻璃视觉可独立开关。渲染实现全新编写，零运行时依赖。",
+  "version": "3.0.0",
+  "description": "iOS 26 液态玻璃（Liquid Glass）Web 主题：手机端适配常驻，玻璃视觉可独立开关。玻璃渲染方式参考 dsh-liquid-glass（壁纸层 + 玻璃岛局部 blur + SDF 位移折射）。",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
@@ -13,6 +13,7 @@
     "build": "node scripts/build.mjs"
   },
   "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
     "client": {
       "platform": "web",
       "immediately": true,
@@ -30,6 +31,7 @@
   "files": [
     "lib",
     "assets",
+    "cordis.patch.yml",
     "README.md",
     "LICENSE"
   ],

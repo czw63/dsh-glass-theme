@@ -1,0 +1,4 @@
+# dsh bundle layer: mount the Liquid Glass theme (client-only skin).
+- insert:
+    - id: glass-theme
+      name: '@local/dsh-glass-theme'

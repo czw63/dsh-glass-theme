@@ -5,6 +5,35 @@
 格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [语义化版本 SemVer](https://semver.org/lang/zh-CN/)。
 
+## [3.0.0]
+
+> 对比 v2.0，本版本在 v2 整体框架（手机端适配、设置 UI、控制逻辑、背景图内联）之上，
+> **把玻璃渲染方式替换为 [`xingyingyuzhui/dsh-liquid-glass`](https://github.com/xingyingyuzhui/dsh-liquid-glass) 的实现**。
+
+### 新增（Added）
+
+- **壁纸层保持清晰**：背景图不再整图 `blur + saturate + brightness` 合成，改为静态壁纸层（不透明可调 `--glass-wallpaper-opacity`）。
+- **玻璃岛渲染**：侧栏 / 标题 / 输入卡 / 弹层各画 `::before` 玻璃岛，局部 `backdrop-filter` 只糊岛背后，不糊壁纸 / body / 滚动容器。
+- **SDF 位移折射**：按岛实际尺寸生成圆角盒 SDF 位移贴图（canvas → PNG data URL），经 `feImage + feDisplacementMap` 注入 SVG 滤镜，RGB 通道分离产生真色散；折射强度 / 岛圆角由设置滑杆驱动，同尺寸 + 同参数命中缓存。
+- **设置整理**：新增「壁纸透明度」「玻璃圆角」；去掉与 SDF 渲染无关的旧滑块（折射频率、试玩卡整组、指针光斑、磨砂颗粒），参数按 外观 / 输入框 / 气泡 / 面板 分组，折叠展示避免堆滑块。
+- **安装模型**：仓库自带 `cordis.patch.yml`（`dsh.bundle.patch`），`dsh plugin add file:...` 自动挂载到 bundle layer，无需手动改 profile 的 cordis.patch.yml。
+
+### 变更（Changed）
+
+- 渲染方式：`feTurbulence` 随机噪点折射 → SDF 圆角盒位移透镜。
+- 背景层：整图合成 → 清晰壁纸层 + 玻璃岛局部模糊。
+- 玻璃圆角统一由 `--glass-radius-xl`（设置「玻璃圆角」）驱动。
+
+### 移除（Removed）
+
+- 背景固定层的静态 blur / 降饱和 / 压暗合成、磨砂噪点层、指针光斑（sheen）、试玩卡（demo）及其滤镜。
+- 设置页中 `bgRefractFrequency` / `refractFrequency` / `noiseOpacity` / `sheen*` / `demo*` 滑块（字段保留以兼容旧 localStorage）。
+
+### 性能（Performance）
+
+- 壁纸层静态；`backdrop-filter` 仅用于各玻璃岛。
+- SDF 贴图按需生成（尺寸或参数变化），同参数缓存；无逐帧动画、无滚动轮询。
+
 ## [2.0.0]
 
 > 对比 v1.0，本版本是一次面向渲染实现与手机端适配的彻底重写：
