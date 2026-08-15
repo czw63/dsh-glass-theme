@@ -4,7 +4,7 @@ DeepSeek Harness（DSH）WebUI 的 **iOS 26 液态玻璃（Liquid Glass）主题
 
 - 手机端适配与玻璃主题解耦：`localStorage['dsh-glass-theme:enabled'] = '0'` 只关闭玻璃视觉，单栏聊天、抽屉侧边栏、详情 Sheet、安全区、44px 触控目标仍然生效。
 - 液态玻璃渲染全部重新编写，零运行时第三方依赖。
-- 输入框是玻璃重点：边缘内高光、小面积 backdrop 磨砂、SVG `feTurbulence + feDisplacementMap + feSpecularLighting` 位移折射/镜面高光/色散边纹，并有 rAF 节流的指针视差阴影；移动端自动降级。
+- 输入框是玻璃重点：边缘内高光、小面积 backdrop 磨砂、SVG `feTurbulence + feDisplacementMap` 位移折射；镜面高光与色散边纹用 CSS 渐变/box-shadow 近似，并有 rAF 节流的指针视差阴影；移动端自动降级（背景位移与气泡磨砂关闭，输入框折射保留）。
 - 背景插画（`assets/background.jpg`）在构建时内联为 data URL，放固定层做一次性 `blur + saturate + brightness` 合成，滚动/交互零成本。
 
 ## 一、安装（web profile）
@@ -110,8 +110,11 @@ location.reload();
 也可用控制台 API：
 
 ```js
+window.__dshGlassTheme.enabled();               // 查询玻璃视觉是否开启（返回 boolean）
 window.__dshGlassTheme.on();                    // 开
 window.__dshGlassTheme.off();                   // 关（仅玻璃）
+window.__dshGlassTheme.toggle();                // 切换
+window.__dshGlassTheme.lensOn();                // 开输入框折射
 window.__dshGlassTheme.lensOff();               // 关输入框折射
 window.__dshGlassTheme.setVar('--glass-bg-blur', '20px');
 window.__dshGlassTheme.clearVars();
@@ -144,3 +147,14 @@ window.__dshGlassTheme.reapply();
 - 背景模糊在固定层一次性合成；聊天主区/侧边栏/详情栏不做大面积 `backdrop-filter`。
 - `backdrop-filter` 仅用于输入卡、弹层/菜单、气泡（桌面端）等中小面积。
 - 无逐帧动画、无滚动/尺寸轮询；指针视差用 rAF 节流，`prefers-reduced-motion` 全部关闭。
+
+## 七、贡献
+
+欢迎提交 issue 与 PR。约定：
+
+- 渲染逻辑集中在 `lib/client.template.js`；改动后必须执行 `node scripts/build.mjs` 重新生成 `lib/client.js`，并按上文说明同步到 profile 的 `node_modules`。
+- 新增或调整手机端布局、玻璃视觉、设置页参数时，请同步更新 `CHANGELOG.md` 与 `docs/`（`ARCHITECTURE.md`、`TUNING.md`、`MOBILE.md`）。
+- 保持零第三方运行时依赖；确认 `prefers-reduced-motion` 与移动端降级仍然生效。
+- 文档统一使用简体中文。
+
+更多实现细节见 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)，调参见 [`docs/TUNING.md`](docs/TUNING.md)，手机端适配见 [`docs/MOBILE.md`](docs/MOBILE.md)。
