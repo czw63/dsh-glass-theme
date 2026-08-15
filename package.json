@@ -39,6 +39,14 @@
   },
   "license": "MIT",
   "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/czw63/dsh-glass-theme.git"
+  },
+  "homepage": "https://github.com/czw63/dsh-glass-theme#readme",
+  "bugs": {
+    "url": "https://github.com/czw63/dsh-glass-theme/issues"
+  },
   "files": [
     "lib",
     "assets/background.jpg",

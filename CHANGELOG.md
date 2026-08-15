@@ -23,4 +23,4 @@
 - `@supports` 降级：不支持 `color-mix` / `backdrop-filter` 时回退不透明原色。
 - `prefers-reduced-motion: reduce` 关闭全部过渡/动画。
 
-[1.0.0]: https://github.com/your-name/dsh-glass-theme/releases/tag/v1.0.0
+[1.0.0]: https://github.com/czw63/dsh-glass-theme/releases/tag/v1.0.0
