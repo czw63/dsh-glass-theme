@@ -29,6 +29,12 @@
 - 背景固定层的静态 blur / 降饱和 / 压暗合成、磨砂噪点层、指针光斑（sheen）、试玩卡（demo）及其滤镜。
 - 设置页中 `bgRefractFrequency` / `refractFrequency` / `noiseOpacity` / `sheen*` / `demo*` 滑块（字段保留以兼容旧 localStorage）。
 
+### 修复（Fixed）
+
+- **设置面板无法点击**：玻璃岛渲染给 `.pI_x6G_sidebarCol` 加 `isolation: isolate` 时未提升 z-index，
+  把侧栏内的设置面板（`z-index: 1000` 固定层）困在侧栏层叠上下文里，被对话内容盖住无法点击；
+  已为侧栏岛宿主加 `z-index: 2`（对齐 dsh-liquid-glass 的做法）。
+
 ### 性能（Performance）
 
 - 壁纸层静态；`backdrop-filter` 仅用于各玻璃岛。
